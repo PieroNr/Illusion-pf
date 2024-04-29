@@ -24,7 +24,7 @@ type ViewProps = {
 }
 
 const View = forwardRef(({ children, orbit, ...props }: ViewProps, ref) => {
-  const localRef = useRef<HTMLElement | null>(null)
+  const localRef = useRef<any>(null)
   useImperativeHandle(ref, () => localRef.current)
 
   // @ts-ignore
