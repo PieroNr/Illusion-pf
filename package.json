@@ -7,13 +7,14 @@
     "@react-three/drei": "^9.56.5",
     "@react-three/fiber": "^8.12.0",
     "glsl-random": "^0.0.5",
+    "gsap": "npm:@gsap/shockingly@^3.12.5",
     "next": "^14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "shadergradient": "^1.2.10",
     "three": "0.150.0",
     "three-stdlib": "^2.24.2",
-    "tunnel-rat": "^0.1.2",
-    "shadergradient": "^1.2.10"
+    "tunnel-rat": "^0.1.2"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.4.13",
