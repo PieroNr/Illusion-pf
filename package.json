@@ -1,11 +1,7 @@
 {
-  "name": "example-nextjs-approuter",
+  "name": "Illusion-pf",
   "version": "0.1.0",
-  "license": "MIT",
   "private": true,
-  "engines": {
-    "node": ">=14"
-  },
   "dependencies": {
     "@ducanh2912/next-pwa": "^9.4.0",
     "@react-three/drei": "^9.56.5",

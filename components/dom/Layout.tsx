@@ -1,12 +1,21 @@
 'use client'
 
-import { useRef } from 'react'
+import { ReactNode, useRef } from 'react'
 import dynamic from 'next/dynamic'
+// @ts-ignore
 const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 
-const Layout = ({ children }) => {
-  const ref = useRef()
+type SceneProps = {
+  style: React.CSSProperties;
+  eventSource: React.MutableRefObject<HTMLDivElement | null>;
+  eventPrefix: string;
+}
 
+// @ts-ignore
+const SceneWrapper = (props: SceneProps) => <Scene {...props} />
+
+const Layout = ({ children }: { children: ReactNode }) => {
+  const ref = useRef<HTMLDivElement | null>(null)
   return (
     <div
       ref={ref}
@@ -19,7 +28,7 @@ const Layout = ({ children }) => {
       }}
     >
       {children}
-      <Scene
+      <SceneWrapper
         style={{
           position: 'fixed',
           top: 0,
