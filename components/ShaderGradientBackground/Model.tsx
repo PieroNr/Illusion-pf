@@ -1,12 +1,13 @@
 import React, { useRef } from 'react'
 import { MeshTransmissionMaterial, useGLTF, Text } from "@react-three/drei";
-import { useFrame, useThree } from '@react-three/fiber'
+import { useFrame, useLoader, useThree } from '@react-three/fiber'
 import { useControls } from 'leva'
 import * as THREE from 'three';
+import { GLTFLoader } from 'three-stdlib'
 
 
 export default function Model() {
-  const { nodes } = useGLTF("/medias/torrus.glb");
+  const { nodes } = useLoader(GLTFLoader, "/medias/torrus.glb");
   const { viewport } = useThree()
   const torus = useRef<THREE.Mesh>(null);
 
