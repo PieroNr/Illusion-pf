@@ -13,7 +13,7 @@ export default function Model() {
 
   useFrame( () => {
     if(!torus.current ) return
-    torus.current.rotation.x += 0.02
+    torus.current.rotation.x += materialProps.speed
   })
 
   const materialProps = useControls({
@@ -23,6 +23,7 @@ export default function Model() {
     ior: { value: 0.9, min: 0, max: 3, step: 0.1 },
     chromaticAberration: { value: 0.14, min: 0, max: 1},
     backside: { value: true},
+    speed: { value: 0.05, min: 0, max: 1, step: 0.05 },
   })
 
   return (
