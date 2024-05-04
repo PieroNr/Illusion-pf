@@ -7,33 +7,65 @@ import { GLTFLoader } from 'three-stdlib'
 
 
 export default function Model() {
-  const { nodes } = useLoader(GLTFLoader, "/medias/torrus.glb");
-  const { viewport } = useThree()
+  const { nodes } = useLoader(GLTFLoader, "/medias/shape.glb");
+  const { clock, viewport } = useThree()
   const torus = useRef<THREE.Mesh>(null);
 
+  const sphere = useRef<THREE.Mesh>(null);
+  const sphere2 = useRef<THREE.Mesh>(null);
+  const sphere3 = useRef<THREE.Mesh>(null);
+
   useFrame( () => {
-    if(!torus.current ) return
-    torus.current.rotation.x += materialProps.speed
+    //make the sphere floating up and down like a bubble
+    if(!sphere.current) return
+    sphere.current.position.y = Math.sin(clock.getElapsedTime()) * materialProps.speed + 0.24
+    sphere.current.position.x = Math.sin(clock.getElapsedTime()*-0.5) * materialProps.speed + 0.27
+
+    if(!sphere2.current) return
+    sphere2.current.position.y = Math.sin(-clock.getElapsedTime()) * materialProps.speed - 0.1
+    sphere2.current.position.x = Math.sin(-clock.getElapsedTime()*-0.5) * materialProps.speed - 0.4
+
+    if(!sphere3.current) return
+    sphere3.current.position.y = Math.sin(clock.getElapsedTime()*0.7) * materialProps.speed - 0.20
+    sphere3.current.position.x = Math.sin(clock.getElapsedTime()*0.2) * materialProps.speed + 0.4
+
+
+
   })
 
   const materialProps = useControls({
-    thickness: { value: 0.9, min: 0, max: 3, step: 0.05 },
+    thickness: { value: 0.95, min: 0, max: 3, step: 0.05 },
     roughness: { value: 0, min: 0, max: 1, step: 0.1 },
     transmission: {value: 1, min: 0, max: 1, step: 0.1},
-    ior: { value: 0.9, min: 0, max: 3, step: 0.1 },
-    chromaticAberration: { value: 0.14, min: 0, max: 1},
-    backside: { value: true},
-    speed: { value: 0.05, min: 0, max: 1, step: 0.05 },
+    ior: { value: 1.2, min: 0, max: 3, step: 0.1 },
+    chromaticAberration: { value: 0.1, min: 0, max: 1},
+    backside: { value: false},
+    speed: { value: 0.04, min: -1, max: 1, step: 0.01 },
   })
 
+  const text = "Make Web\nbecome\nan Illusion"
+
   return (
-    <group scale={viewport.width / 3.75} >
-    <Text font={'/fonts/BrownSugarModern/BrownSugar.otf'} position={[0, 0, 1.2]} fontSize={0.08} color="white" anchorX="center" anchorY="middle">
-    Illusion
-  </Text>
-  <mesh ref={torus} {...nodes.Torus002} position={[0, 0, 1.3]} scale={[0.1, 0.1, 0.1]}>
-  <MeshTransmissionMaterial {...materialProps}/>
-  </mesh>
-  </group>
-)
+    <group scale={viewport.width / 5}>
+      <Text font={'/fonts/Salish/Salish.otf'} position={[0, 0, 1]} fontSize={0.23} color="white"
+            anchorX="center" anchorY="middle" textAlign={'center'}>
+        {text}
+      </Text>
+      <group>
+        <mesh ref={sphere} position={[0.27, 0.22, 2]} scale={0.25}>
+          <sphereBufferGeometry />
+          <MeshTransmissionMaterial {...materialProps} />
+        </mesh>
+        <mesh ref={sphere2} position={[-0.4, -0.10, 2]} scale={0.15}>
+          <sphereBufferGeometry />
+          <MeshTransmissionMaterial {...materialProps} />
+        </mesh>
+
+        <mesh ref={sphere3} position={[0.2, -0.20, 2]} scale={0.1}>
+          <sphereBufferGeometry />
+          <MeshTransmissionMaterial {...materialProps} />
+        </mesh>
+      </group>
+    </group>
+  )
 }

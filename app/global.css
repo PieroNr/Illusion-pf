@@ -8,6 +8,12 @@
     url('/fonts/BrownSugarModern/BrownSugar.otf') format('opentype');
 
 }
+@font-face {
+  font-family: 'Salish';
+  src: url('/fonts/Salish/Salish.otf') format('opentype'),
+    url('/fonts/Salish/Salish-Italic.otf') format('opentype');
+
+}
 
 @layer base {
   * {
