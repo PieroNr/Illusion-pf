@@ -1,7 +1,7 @@
 'use client'
 
-import { Canvas, ShaderGradientCanvas } from 'shadergradient'
-import { PerspectiveCamera, Preload } from '@react-three/drei'
+import { Canvas } from 'shadergradient'
+import { PerspectiveCamera } from '@react-three/drei'
 import { r3f } from '@/helpers/global'
 import { Camera } from 'three'
 
